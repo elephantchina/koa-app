@@ -2,6 +2,7 @@ const koa = require('koa');
 const Router = require('koa-router');
 const mongoose = require('mongoose');
 const bodyParser = require('koa-bodyparser');
+const passport = require('koa-passport');
 
 // 实例化KOA
 const app = new koa();
@@ -26,11 +27,18 @@ const db = require('./config/keys').mongoURL;
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => {
-    console.log('Mongodb Connected ...');
+    console.log('Mongodb Connected Success...');
   })
   .catch(err => {
     console.log(err);
   });
+
+// passport初始化
+app.use(passport.initialize());
+app.use(passport.session());
+
+// 回调到config文件中passport.js
+require('./config/passport')(passport);
 
 // 配置路由地址
 router.use('/api/users', users);

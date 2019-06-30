@@ -2,6 +2,7 @@ const Router = require('koa-router');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const passport = require('koa-passport');
 const tools = require('../../config/tools');
 const keys = require('../../config/keys');
 
@@ -9,6 +10,10 @@ const router = new Router();
 
 // 引入数据模型
 const User = require('../../models/User');
+
+// 引入input验证
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 /**
  * @route GET api/users/test
@@ -23,13 +28,21 @@ router.get('/test', async ctx => {
 });
 
 /**
- * @route GET api/users/register
+ * @route POST api/users/register
  * @dess 注册接口
  * @accsee 接口是公开的
  *  */
 
 router.post('/register', async ctx => {
   // console.log(ctx.request.body);
+  // 验证有效性
+  const { errors, isValid } = validateRegisterInput(ctx.request.body);
+  if (!isValid) {
+    ctx.status = 400;
+    ctx.body = errors;
+    return;
+  }
+
   // 查询数据库
   const findResult = await User.find({ email: ctx.request.body.email });
   if (findResult.length > 0) {
@@ -67,12 +80,20 @@ router.post('/register', async ctx => {
 });
 
 /**
- * @route GET api/users/login
+ * @route POST api/users/login
  * @dess 登录接口,返回token
  * @accsee 接口是公开的
  *  */
 
 router.post('/login', async ctx => {
+  // 验证有效性
+  const { errors, isValid } = validateLoginInput(ctx.request.body);
+  if (!isValid) {
+    ctx.status = 400;
+    ctx.body = errors;
+    return;
+  }
+
   // 查询登录账号是否有效
   const findResult = await User.find({ email: ctx.request.body.email });
   const user = findResult[0];
@@ -99,7 +120,7 @@ router.post('/login', async ctx => {
       ctx.status = 200;
       ctx.body = {
         success: true,
-        token: 'Bearea' + token,
+        token: 'Bearer ' + token,
       };
     } else {
       ctx.status = 400;
@@ -109,5 +130,24 @@ router.post('/login', async ctx => {
     }
   }
 });
+
+/**
+ * @route GET api/users/current
+ * @dess 用户信息接口
+ * @accsee 接口是私密的
+ *  */
+
+router.get(
+  '/current',
+  passport.authenticate('jwt', { session: false }),
+  async ctx => {
+    ctx.body = {
+      id: ctx.state.user.id,
+      name: ctx.state.user.name,
+      email: ctx.state.user.email,
+      avatar: ctx.state.user.avatar,
+    };
+  },
+);
 
 module.exports = router.routes();
