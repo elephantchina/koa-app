@@ -18,8 +18,6 @@ import passport from 'koa-passport';
 // 	console.log(`server running success at ${server.graphqlPath}`)
 // })
 
-
-
 // 实例化KOA
 const app = new koa();
 const router = new Router();
@@ -34,11 +32,17 @@ router.get('/', async ctx => {
 });
 
 // logger
-
 app.use(async (ctx, next) => {
   await next();
   const rt = ctx.response.get('X-Response-Time');
+  console.log(
+    '<------------------------------------------------------------------------------>',
+  );
   console.log(`${ctx.method} ${ctx.url} - ${rt}`);
+  console.log(ctx);
+  console.log(
+    '<------------------------------------------------------------------------------>',
+  );
 });
 
 // x-response-time

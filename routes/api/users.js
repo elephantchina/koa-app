@@ -142,11 +142,35 @@ router.get(
   '/current',
   passport.authenticate('jwt', { session: false }),
   async ctx => {
+    ctx.status = 200;
     ctx.body = {
       id: ctx.state.user.id,
       name: ctx.state.user.name,
       email: ctx.state.user.email,
       avatar: ctx.state.user.avatar,
+    };
+  },
+);
+
+/**
+ * @route GET api/users/current
+ * @dess 用户信息接口
+ * @accsee 用户列表
+ *  */
+
+router.get(
+  '/list',
+  passport.authenticate('jwt', { session: false }),
+  async ctx => {
+    const findResult = await User.find((err, user) => {
+      if (err) return console.error(err);
+      delete user.password;
+      return user;
+    });
+    // console.log(findResult);
+    ctx.status = 200;
+    ctx.body = {
+      data: findResult,
     };
   },
 );
