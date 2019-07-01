@@ -1,4 +1,5 @@
 const koa = require('koa');
+// import koa from 'koa';
 const Router = require('koa-router');
 const mongoose = require('mongoose');
 const bodyParser = require('koa-bodyparser');
@@ -18,11 +19,14 @@ router.get('/', async ctx => {
 });
 
 // logger
-
 app.use(async (ctx, next) => {
   await next();
-  const rt = ctx.response.get('X-Response-Time');
-  console.log(`${ctx.method} ${ctx.url} - ${rt}`);
+	const rt = ctx.response.get('X-Response-Time');
+	console.log('<------------------------------------------------------------------------------>');
+	console.log(`${ctx.method} ${ctx.url} - ${rt}`);
+	console.log(ctx)
+	console.log('<------------------------------------------------------------------------------>');
+	
 });
 
 // x-response-time
