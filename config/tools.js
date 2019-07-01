@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs';
 
 const tools = {
   // 加密密码
@@ -9,4 +9,4 @@ const tools = {
   },
 };
 
-module.exports = tools;
+export default tools;

@@ -1,8 +1,24 @@
-const koa = require('koa');
-const Router = require('koa-router');
-const mongoose = require('mongoose');
-const bodyParser = require('koa-bodyparser');
-const passport = require('koa-passport');
+import koa from 'koa';
+import Router from 'koa-router';
+import mongoose from 'mongoose';
+import bodyParser from 'koa-bodyparser';
+import passport from 'koa-passport';
+
+// import { ApolloServer, gql } from 'apollo-server-koa'; // graphql-koa插件
+// import schema from './server/graphql/index.js'; //自定义的GraphQL的表
+
+// const server = new ApolloServer({ //创建Graphql server
+// 	schema,
+// 	context: ({ ctx }) => {
+// 			// let token = ctx.
+// 	}
+// });
+// server.applyMiddleware({app}); //apollo server使用koa中间件
+// app.listen(9527, ()=> { //监听端口
+// 	console.log(`server running success at ${server.graphqlPath}`)
+// })
+
+
 
 // 实例化KOA
 const app = new koa();

@@ -1,15 +1,16 @@
-const Router = require('koa-router');
-const gravatar = require('gravatar');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const passport = require('koa-passport');
-const tools = require('../../config/tools');
+import Router from 'koa-router';
+import gravatar from 'gravatar';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import passport from 'koa-passport';
+import tools from '../../config/tools';
 const keys = require('../../config/keys');
 
 const router = new Router();
 
 // 引入数据模型
-const User = require('../../models/User');
+// const User = require('../../models/User');
+import User from '../../models/User';
 
 // 引入input验证
 const validateRegisterInput = require('../../validation/register');

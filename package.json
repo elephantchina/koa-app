@@ -5,13 +5,15 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js",
+    "server": "nodemon start.js",
     "pm2": "pm2 start app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
