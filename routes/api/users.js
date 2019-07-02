@@ -4,12 +4,11 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import passport from 'koa-passport';
 import tools from '../../config/tools';
-const keys = require('../../config/keys');
+import { keys } from '../../config/keys';
 
 const router = new Router();
 
 // 引入数据模型
-// const User = require('../../models/User');
 import User from '../../models/User';
 
 // 引入input验证
@@ -175,4 +174,4 @@ router.get(
   },
 );
 
-module.exports = router.routes();
+export default router.routes();

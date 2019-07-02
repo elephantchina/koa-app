@@ -2,11 +2,10 @@
   "name": "koa-app",
   "version": "1.0.0",
   "description": "koa-app",
-  "main": "app.js",
+  "main": "start.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node strat.js",
 		"server": "nodemon start.js",
-		"gr": "nodemon index.js",
     "pm2": "pm2 start app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

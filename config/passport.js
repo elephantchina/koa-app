@@ -1,14 +1,17 @@
 import mongoose from 'mongoose';
 const JwtStrategy = require('passport-jwt').Strategy,
   ExtractJwt = require('passport-jwt').ExtractJwt;
-const keys = require('../config/keys');
+import { keys } from '../config/keys';
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = keys.secretOrKey;
 
-const User = mongoose.model('users');
+// 引入数据模型
+import User from '../models/User';
 
-module.exports = passport => {
+// const User = mongoose.model('users');
+
+const passportFun =  passport => {
   passport.use(
     new JwtStrategy(opts, async function(jwt_payload, done) {
       // console.log(jwt_payload);
@@ -21,3 +24,5 @@ module.exports = passport => {
     }),
   );
 };
+
+export default passportFun;
