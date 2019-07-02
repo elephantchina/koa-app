@@ -5,16 +5,19 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon start.js",
+		"server": "nodemon start.js",
+		"gr": "nodemon index.js",
     "pm2": "pm2 start app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-server-koa": "^2.7.0-alpha.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
+    "graphql": "^14.4.1",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.7.0",
