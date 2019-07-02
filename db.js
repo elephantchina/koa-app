@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import { keys } from './config/keys';
 
-// 数据库
-// const db = require('./config/keys').mongoURL;
 //链接数据库
 const connect = () => {
   mongoose

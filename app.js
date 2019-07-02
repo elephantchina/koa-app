@@ -48,5 +48,5 @@ app.use(graphqlServer.getMiddleware());
 const port = process.env.PORT || 5000;
 
 app.listen({ port }, () => {
-  console.log(`🚀 API ready at http://localhost:${port}`);
+  console.log(`🚀 API ready at http://localhost:${port}${graphqlServer.graphqlPath}`);
 });
