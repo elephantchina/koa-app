@@ -1,13 +1,15 @@
 import koa from 'koa';
 import Router from 'koa-router';
+import colors from 'colors';
 import bodyParser from 'koa-bodyparser';
 import passport from 'koa-passport';
-import graphqlServer from './routes/index';
+import graphqlServer from './apollo';
 import connect from './db';
 import logger from './log';
 import passportFun from './config/passport';
 // 引入路由
 import users from './routes/api/users';
+
 
 // 实例化KOA
 const app = new koa();
@@ -48,5 +50,5 @@ app.use(graphqlServer.getMiddleware());
 const port = process.env.PORT || 5000;
 
 app.listen({ port }, () => {
-  console.log(`🚀 API ready at http://localhost:${port}${graphqlServer.graphqlPath}`);
+  console.log(`🚀 API ready at http://localhost:${port}${graphqlServer.graphqlPath}`.blue);
 });

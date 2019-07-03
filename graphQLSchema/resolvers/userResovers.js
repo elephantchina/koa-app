@@ -16,13 +16,19 @@ const userResolvers = {
   Query: {
     hello: () => 'Hello world!',
     user: () => user,
-    userList: async () => {
+    userList: async (parent, args, context, info) => {
+      console.log(context);
       const findResult = await User.find((err, user) => {
         if (err) return console.error(err);
         delete user.password;
         return user;
       });
-      return findResult || [];
+      return {
+        code: 1,
+        success: true,
+        message: 'success',
+        data: findResult || [],
+      };
     },
   },
 };

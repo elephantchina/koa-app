@@ -3,10 +3,10 @@ const logger = app => {
   app.use(async (ctx, next) => {
     await next();
     const rt = ctx.response.get('X-Response-Time');
-    console.log(`${ctx.method} ${ctx.url} - ${rt}`);
+    console.log(`${ctx.method} ${ctx.url} - ${rt}`.green);
     // console.log(ctx);
     console.log(
-      '📢 ------------------------------------------------------------------------------ 🔕',
+      '📢 ------------------------------------------------------------------------------ '.yellow,
     );
   });
 

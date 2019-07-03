@@ -692,6 +692,11 @@ code-point-at@^1.0.0:
   resolved "http://repos.seeapp.com:8081/repository/npm-all/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
+colors@^1.3.3:
+  version "1.3.3"
+  resolved "http://repos.seeapp.com:8081/repository/npm-all/colors/-/colors-1.3.3.tgz#39e005d546afe01e01f9c4ca8fa50f686a01205d"
+  integrity sha1-OeAF1Uav4B4B+cTKj6UPaGoBIF0=
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "http://repos.seeapp.com:8081/repository/npm-all/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
