@@ -10,7 +10,6 @@ import passportFun from './config/passport';
 // 引入路由
 import users from './routes/api/users';
 
-
 // 实例化KOA
 const app = new koa();
 const router = new Router();
@@ -50,5 +49,7 @@ app.use(graphqlServer.getMiddleware());
 const port = process.env.PORT || 5000;
 
 app.listen({ port }, () => {
-  console.log(`🚀 API ready at http://localhost:${port}${graphqlServer.graphqlPath}`.blue);
+  console.log(
+    `🚀 API ready at http://localhost:${port}${graphqlServer.graphqlPath}`.blue,
+  );
 });

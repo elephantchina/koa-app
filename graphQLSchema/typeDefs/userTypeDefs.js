@@ -8,6 +8,7 @@ const userTypeDefs = gql`
     success: Boolean!
     message: String!
   }
+
   # type test
   type test {
     title: String
