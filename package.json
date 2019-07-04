@@ -2,11 +2,13 @@
   "name": "koa-app",
   "version": "1.0.0",
   "description": "koa-app",
-  "main": "start.js",
+  "main": "lib/server.js",
   "scripts": {
-    "start": "nodemon start.js",
-    "server": "nodemon start.js",
-    "pm2": "pm2 start index.js",
+    "start": "cross-env PROT=80 nodemon lib/server.js",
+    "dev": "serve src/index.js",
+    "server": "nodemon lib/index.js",
+    "pm2": "pm2 start lib/index.js",
+    "build": "babel src --out-dir lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "lib/server.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    { "src": "/", "dest": "lib/server.js" },
+    { "src": "/graphql", "dest": "lib/server.js" }
+  ]
+}

@@ -43,10 +43,12 @@ router.use('/api/users', users);
 app.use(router.routes()).use(router.allowedMethods());
 
 // 配置graphql
-// server.applyMiddleware({ app });
-app.use(graphqlServer.getMiddleware());
+graphqlServer.applyMiddleware({ app });
+// app.use(graphqlServer.getMiddleware());
 
 const port = process.env.PORT || 5000;
+
+
 
 app.listen({ port }, () => {
   console.log(

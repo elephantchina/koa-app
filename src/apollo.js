@@ -3,16 +3,18 @@ import { typeDefs, resolvers } from './graphQLSchema';
 
 const graphqlServer = new ApolloServer({
   typeDefs,
-	resolvers,
-	// 上下文
+  resolvers,
+  // 上下文
   context: ({ req }) => ({
     authScope: req,
-	}),
-	// 根域缓存
+  }),
+  // 根域缓存
   cacheControl: {
     defaultMaxAge: 60,
-	},
-	// mock
+  },
+  introspection: true,
+  playground: true,
+  // mock
   /*mocks: true*/
 });
 
