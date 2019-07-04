@@ -3,11 +3,11 @@ import { gql } from 'apollo-server-koa';
 // Construct a schema, using GraphQL schema language
 const userTypeDefs = gql`
   # 公共出处理
-  # interface MutationResponse {
-  #   code: String!
-  #   success: Boolean!
-  #   message: String!
-  # }
+  interface MutationResponse {
+    code: String!
+    success: Boolean!
+    message: String!
+  }
 
   # type test
   type test {
@@ -22,7 +22,7 @@ const userTypeDefs = gql`
     avatar: String!
 	}
   # 用户信息
-  type UserListReponse {
+  type UserListReponse implements MutationResponse{
     code: String!
     success: Boolean!
     message: String!
