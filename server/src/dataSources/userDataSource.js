@@ -8,8 +8,12 @@ class UserAPI extends RESTDataSource {
   }
 
   // 这里鉴权做的比较蠢，大家不要模仿
-  async getUsers() {
-    let { data } = await this.get('list');
+  async getUsers(Authorization) {
+    let { data } = await this.get('list', null, {
+      headers: {
+        Authorization,
+      },
+    });
     return {
       data,
       code,

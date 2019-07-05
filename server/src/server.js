@@ -3,6 +3,7 @@ import Router from 'koa-router';
 import colors from 'colors';
 import bodyParser from 'koa-bodyparser';
 import passport from 'koa-passport';
+import cors from '@koa/cors';
 import graphqlServer from './apollo';
 import connect from './db';
 import logger from './log';
@@ -33,6 +34,22 @@ connect();
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(
+  cors({
+    origin: '*',
+    credentials: true,
+    methods: ['PUT', 'POST', 'GET', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+      'Content-Type',
+      'Content-Length',
+      'Authorization',
+      'Accept',
+      'X-Requested-With',
+      'x-access-token',
+    ],
+  }),
+);
+
 // 回调到config文件中passport.js
 passportFun(passport);
 
@@ -47,8 +64,6 @@ graphqlServer.applyMiddleware({ app });
 // app.use(graphqlServer.getMiddleware());
 
 const port = process.env.PORT || 5000;
-
-
 
 app.listen({ port }, () => {
   console.log(

@@ -16,7 +16,7 @@ const UserSchema = gql`
     """
     用户ID
     """
-    id: ID!
+    _id: String!
     """
     用户名称
     """

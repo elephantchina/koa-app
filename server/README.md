@@ -1,8 +1,11 @@
 <h1 align="center">Welcome to koa-app 👋</h1>
 <p>
+  <img src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> koa+apollo+react+umi
+> koa-app
+
+### 🏠 [Homepage](fanguyun214)
 
 ## Install
 
@@ -10,9 +13,21 @@
 npm install
 ```
 
+## Usage
+
+```sh
+npm run server
+```
+
+## Run tests
+
+```sh
+npm run test
+```
+
 ## Author
 
-👤 **fan**
+👤 **fam**
 
 * Github: [@fanguyun214](https://github.com/fanguyun214)
 
