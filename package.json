@@ -1,0 +1,23 @@
+{
+  "name": "koa-app",
+  "version": "1.0.0",
+  "description": "koa+apollo+umi",
+  "main": "index.js",
+  "scripts": {
+    "ins": "cd server && cnpm install",
+    "sdev": "cd server && yarn dev",
+    "sbuild": "cd server && yarn build",
+    "sdeploy": "cd server && now",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fanguyun214/koa-app.git"
+  },
+  "author": "fanguyun214",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fanguyun214/koa-app/issues"
+  },
+  "homepage": "https://github.com/fanguyun214/koa-app#readme"
+}
