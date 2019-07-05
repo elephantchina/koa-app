@@ -1,2 +1,11 @@
+#server
 server/node_modules
 server/lib
+
+#client
+client/node_modules
+client/dist
+
+# umi
+client/.umi
+client/.umi-production

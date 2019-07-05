@@ -2,12 +2,28 @@
 <p>
 </p>
 
-> koa+apollo+react+umi
+> Koa+Mongodb+Aplollo+react+umi
 
 ## Install
 
 ```sh
-npm install
+yarn ins
+
+
+### Server
+cd server
+- yarn install
+- yarn dev
+- yarn build
+- now
+
+
+### Client
+cd client
+- yarn install
+- yarn start
+- yarn build
+- now ./dist
 ```
 
 ## Author

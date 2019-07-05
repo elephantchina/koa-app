@@ -4,10 +4,13 @@
   "description": "koa+apollo+umi",
   "main": "index.js",
   "scripts": {
-    "ins": "cd server && cnpm install",
+		"ins": "cd server && echo \"install server --->\" && cnpm install && cd ../client && echo \"install client --->\" && cnpm install",
     "sdev": "cd server && yarn dev",
     "sbuild": "cd server && yarn build",
-    "sdeploy": "cd server && now",
+		"sdeploy": "cd server && now",
+		"cdev": "cd client && yarn start",
+		"cbuild": "cd client && yarn build",
+		"cdeploy": "cd client && now ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
