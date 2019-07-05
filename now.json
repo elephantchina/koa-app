@@ -1,5 +1,6 @@
 {
-  "version": 2,
+	"version": 2,
+	"alias": "jasonfan.now.sh",
   "builds": [
     {
       "src": "lib/server.js",

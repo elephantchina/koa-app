@@ -5,7 +5,7 @@
   "main": "lib/server.js",
   "scripts": {
     "start": "cross-env PROT=80 nodemon lib/server.js",
-    "dev": "serve src/index.js",
+    "dev": "nodemon src/index.js",
     "server": "nodemon lib/index.js",
     "pm2": "pm2 start lib/index.js",
     "build": "babel src --out-dir lib",
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-datasource-rest": "^0.5.0",
     "apollo-server-koa": "^2.7.0-alpha.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-register": "^6.26.0",
@@ -25,6 +26,7 @@
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "merge-graphql-schemas": "^1.5.8",
     "mongoose": "^5.6.2",
     "nodemon": "^1.19.1",
     "pm2": "^3.5.1",

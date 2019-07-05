@@ -8,7 +8,7 @@ import connect from './db';
 import logger from './log';
 import passportFun from './config/passport';
 // 引入路由
-import users from './routes/api/users';
+import users from './routes/userRoute';
 
 // 实例化KOA
 const app = new koa();

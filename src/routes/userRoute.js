@@ -3,17 +3,17 @@ import gravatar from 'gravatar';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import passport from 'koa-passport';
-import tools from '../../config/tools';
-import { keys } from '../../config/keys';
+import tools from '../config/tools';
+import { keys } from '../config/keys';
 
 const router = new Router();
 
 // 引入数据模型
-import User from '../../models/User';
+import User from '../models/User';
 
 // 引入input验证
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+const validateRegisterInput = require('../validation/register');
+const validateLoginInput = require('../validation/login');
 
 /**
  * @route GET api/users/test
@@ -169,7 +169,7 @@ router.get(
     // console.log(findResult);
     ctx.status = 200;
     ctx.body = {
-      data: findResult,
+			data: findResult,
     };
   },
 );

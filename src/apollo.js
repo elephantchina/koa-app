@@ -1,13 +1,31 @@
 import { ApolloServer, getScope } from 'apollo-server-koa';
-import { typeDefs, resolvers } from './graphQLSchema';
+import { typeDefs, resolvers } from './graphQL';
+import UserAPI from './dataSources/userDataSource';
+
+const initDatasource = () => {
+  let datasourceMap = {
+    UserAPI: new UserAPI(),
+  };
+  return datasourceMap;
+};
 
 const graphqlServer = new ApolloServer({
+  // Schema
   typeDefs,
-  resolvers,
-  // 上下文
-  context: ({ req }) => ({
-    authScope: req,
+  // 解析器
+	resolvers,
+	// 数据源
+  dataSources: () => initDatasource(),
+  // 上下文对象
+  context: ({ ctx }) => ({
+    auth: ctx.req.headers['x-access-token'],
   }),
+  // 内省
+  // introspection: mode === 'develop' ? true : false,
+  // 对错误信息的处理
+  formatError: err => {
+    return err;
+  },
   // 根域缓存
   cacheControl: {
     defaultMaxAge: 60,
