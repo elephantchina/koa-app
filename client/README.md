@@ -1,57 +1,21 @@
-# Ant Design Pro
+# ice-typescript-starter
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+## 使用
 
-## Environment Prepare
+- 启动调试服务: `npm start`
+- 构建 dist: `npm run build`
 
-Install `node_modules`:
+## 目录结构
 
-```bash
-npm install
-```
+- react-router @4.x 默认采用 hashHistory 的单页应用
+- 入口文件: `src/index.js`
+- 导航配置: `src/menuConfig.js`
+- 路由配置: `src/routerConfig.js`
+- 路由入口: `src/router.jsx`
+- 布局文件: `src/layouts`
+- 通用组件: `src/components`
+- 页面文件: `src/pages`
 
-or
+## 效果图
 
-```bash
-yarn
-```
-
-## Provided Scripts
-
-Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
-
-Scripts provided in `package.json`. It's safe to modify or add additional script:
-
-### Start project
-
-```bash
-npm start
-```
-
-### Build project
-
-```bash
-npm run build
-```
-
-### Check code style
-
-```bash
-npm run lint
-```
-
-You can also use script to auto fix some lint error:
-
-```bash
-npm run lint:fix
-```
-
-### Test code
-
-```bash
-npm test
-```
-
-## More
-
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+![screenshot](https://img.alicdn.com/tfs/TB13AFlH6TpK1RjSZKPXXa3UpXa-2860-1580.png)
