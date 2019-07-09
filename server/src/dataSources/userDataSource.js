@@ -7,6 +7,15 @@ class UserAPI extends RESTDataSource {
     this.baseURL = `http://127.0.0.1:${port}/api/users`;
   }
 
+  // 用户登录
+  async userLogin(arg) {
+    let { success, token } = await this.post('login', { ...arg });
+    return {
+      success,
+      token,
+    };
+  }
+
   // 这里鉴权做的比较蠢，大家不要模仿
   async getUsers(Authorization) {
     let { data } = await this.get('list', null, {
@@ -16,8 +25,6 @@ class UserAPI extends RESTDataSource {
     });
     return {
       data,
-      code,
-      msg,
     };
   }
 

@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
 import { Input, Checkbox, Grid, Message, Icon, Form } from '@alifd/next';
-import './Login.scss';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 import styles from './style.module.scss';
+
+const USER_LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      success
+      token
+    }
+  }
+`;
 
 const { Row } = Grid;
 const Item = Form.Item;
@@ -17,18 +27,23 @@ export default function Index() {
     setValue(value);
   };
 
-  const handleSubmit = (values, errors) => {
+  const handleSubmit = (values, errors, addTodo) => {
     if (errors) {
       console.log('errors', errors);
       return;
     }
     console.log('values:', values);
-    Message.success('登录成功');
+    addTodo({
+      variables: { email: values.email, password: values.password },
+    }).then(res => {
+      console.log(res);
+    });
+    // Message.success('登录成功');
     // 登录成功后做对应的逻辑处理
   };
 
   return (
-    <div className={`${styles.container} user-login`}>
+    <div className={`${styles.container}`}>
       <div className={styles.header}>
         <a href="#" className={styles.meta}>
           <img
@@ -42,48 +57,44 @@ export default function Index() {
       </div>
       <div className={styles.formContainer}>
         <h4 className={styles.formTitle}>登 录</h4>
-        <Form value={value} onChange={formChange} size="large">
-          <Item required requiredMessage="必填">
-            <Input
-              name="account"
-              size="large"
-              maxLength={20}
-              placeholder="管理员账号"
-            />
-          </Item>
-          <Item required requiredMessage="必填">
-            <Input
-              name="password"
-              size="large"
-              htmlType="password"
-              placeholder="密码"
-            />
-          </Item>
-          {/* <Item >
+        <Mutation mutation={USER_LOGIN}>
+          {(login, { data }) => (
+            <Form value={value} onChange={formChange} size="large">
+              <Item required requiredMessage="必填">
+                <Input
+                  name="email"
+                  size="large"
+                  maxLength={20}
+                  placeholder="账号"
+                />
+              </Item>
+              <Item required requiredMessage="必填">
+                <Input
+                  name="password"
+                  size="large"
+                  htmlType="password"
+                  placeholder="密码"
+                />
+              </Item>
+              {/* <Item >
             <Checkbox name="checkbox" className={styles.checkbox}>记住账号</Checkbox>
           </Item> */}
 
-          <Row className={styles.formItem}>
-            <Form.Submit
-              type="primary"
-              onClick={handleSubmit}
-              className={styles.submitBtn}
-              validate
-            >
-              登 录
-            </Form.Submit>
-          </Row>
-
-          {/* <Row className={`${styles.tips} tips`}>
-            <a href="/" className={styles.link}>
-              立即注册
-              </a>
-            <span className={styles.line}>|</span>
-            <a href="/" className={styles.link}>
-              忘记密码
-              </a>
-          </Row> */}
-        </Form>
+              <Row className={styles.formItem}>
+                <Form.Submit
+                  type="primary"
+                  onClick={(values, errors) =>
+                    handleSubmit(values, errors, login)
+                  }
+                  className={styles.submitBtn}
+                  validate
+                >
+                  登 录
+                </Form.Submit>
+              </Row>
+            </Form>
+          )}
+        </Mutation>
       </div>
     </div>
   );

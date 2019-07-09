@@ -1,46 +1,47 @@
 import React from 'react';
-import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import path from 'path';
+import { ApolloProvider } from 'react-apollo';
+import client from './client';
 import routes from './routerConfig';
 
-const RouteItem = (props) => {
+// 载入默认全局样式 normalize
+import '@alifd/next/reset.scss';
+
+const RouteItem = props => {
   const { redirect, path: routePath, component, key } = props;
   if (redirect) {
-    return (
-      <Redirect
-        exact
-        key={key}
-        from={routePath}
-        to={redirect}
-      />
-    );
+    return <Redirect exact key={key} from={routePath} to={redirect} />;
   }
-  return (
-    <Route
-      key={key}
-      component={component}
-      path={routePath}
-    />
-  );
+  return <Route key={key} component={component} path={routePath} />;
 };
 
 const router = () => {
   return (
-    <Router>
-      <Switch>
-        {routes.map((route, id) => {
-          const { component: RouteComponent, children, ...others } = route;
-          return (
-            <Route
-              key={id}
-              {...others}
-              component={(props) => {
-                return (
-                  children ? (
+    <ApolloProvider client={client}>
+      <Router>
+        <Switch>
+          {routes.map((route, id) => {
+            const { component: RouteComponent, children, ...others } = route;
+            return (
+              <Route
+                key={id}
+                {...others}
+                component={props => {
+                  return children ? (
                     <RouteComponent key={id} {...props}>
                       <Switch>
                         {children.map((routeChild, idx) => {
-                          const { redirect, path: childPath, component } = routeChild;
+                          const {
+                            redirect,
+                            path: childPath,
+                            component,
+                          } = routeChild;
                           return RouteItem({
                             key: `${id}-${idx}`,
                             redirect,
@@ -52,21 +53,19 @@ const router = () => {
                     </RouteComponent>
                   ) : (
                     <>
-                      {
-                        RouteItem({
-                          key: id,
-                          ...props,
-                        })
-                      }
+                      {RouteItem({
+                        key: id,
+                        ...props,
+                      })}
                     </>
-                  )
-                );
-              }}
-            />
-          );
-        })}
-      </Switch>
-    </Router>
+                  );
+                }}
+              />
+            );
+          })}
+        </Switch>
+      </Router>
+    </ApolloProvider>
   );
 };
 

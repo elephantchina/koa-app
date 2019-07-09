@@ -10,6 +10,10 @@ const TypeDefs = gql`
     hello: String
     userList: UserListReponse
   }
+	
+	type Mutation {
+		login(email: String!, password: String!): LoginReponse
+	}
 `;
 
 const Schema = [TypeDefs, UserSchema];

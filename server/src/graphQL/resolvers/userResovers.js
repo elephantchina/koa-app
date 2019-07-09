@@ -5,6 +5,11 @@ const userResolvers = {
       return dataSources.UserAPI.getUsers(auth);
     },
   },
+  Mutation: {
+    login: async (parent, args, { dataSources }, info) => {
+      return dataSources.UserAPI.userLogin(args);
+    },
+  },
 };
 
 export default userResolvers;

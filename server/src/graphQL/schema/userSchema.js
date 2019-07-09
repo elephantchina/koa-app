@@ -1,16 +1,6 @@
 import { gql } from 'apollo-server-koa';
 
 const UserSchema = gql`
-  interface MutationResponse {
-    """
-    状态码 1 成功
-    """
-    code: String!
-    """
-    提示语
-    """
-    msg: String!
-  }
 
   type User {
     """
@@ -30,11 +20,16 @@ const UserSchema = gql`
     """
     avatar: String!
   }
+
   # 用户信息
-  type UserListReponse implements MutationResponse {
-    code: String!
-    msg: String!
-    data: [User]
+  type UserListReponse {
+    userList: [User]
+  }
+
+	# 用户登录成功信息
+	type LoginReponse {
+    token: String!
+		success: String!
   }
 `;
 
