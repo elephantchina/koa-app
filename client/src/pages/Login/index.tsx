@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import {
-  Input,
-  Checkbox,
-  Grid,
-  Message,
-  Icon,
-  Form,
-  Message,
-} from '@alifd/next';
+import { Input, Grid, Message, Form } from '@alifd/next';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import { withRouter } from 'react-router-dom';
 import styles from './style.module.scss';
 
 const USER_LOGIN = gql`
@@ -24,7 +17,8 @@ const USER_LOGIN = gql`
 const { Row } = Grid;
 const Item = Form.Item;
 
-export default function Index() {
+@withRouter
+export default function Index(props) {
   const [value, setValue] = useState({
     account: '',
     password: '',
@@ -36,22 +30,23 @@ export default function Index() {
   };
 
   const handleSubmit = (values, errors, addTodo) => {
+    const { history } = props;
     if (errors) {
       console.log('errors', errors);
       return;
     }
-    console.log('values:', values);
+    // console.log('values:', values);
     addTodo({
       variables: { email: values.email, password: values.password },
     }).then(res => {
+      // 登录成功后做对应的逻辑处理
       const {
         login: { token },
       } = res.data;
       localStorage.setItem('X-CROSS-TOKEN', token);
       Message.success('登录成功！');
+      history.push('/main');
     });
-    // Message.success('登录成功');
-    // 登录成功后做对应的逻辑处理
   };
 
   return (
@@ -63,14 +58,14 @@ export default function Index() {
             src={require('./images/logo.png')}
             alt="logo"
           />
-          <span className={styles.title}>飞冰</span>
+          <span className={styles.title}>Apollo</span>
         </a>
         <p className={styles.desc}>飞冰让前端开发简单而友好</p>
       </div>
       <div className={styles.formContainer}>
         <h4 className={styles.formTitle}>登 录</h4>
         <Mutation mutation={USER_LOGIN}>
-          {(login, { data }) => (
+          {(login) => (
             <Form value={value} onChange={formChange} size="large">
               <Item required requiredMessage="必填">
                 <Input
@@ -88,9 +83,6 @@ export default function Index() {
                   placeholder="密码"
                 />
               </Item>
-              {/* <Item >
-            <Checkbox name="checkbox" className={styles.checkbox}>记住账号</Checkbox>
-          </Item> */}
 
               <Row className={styles.formItem}>
                 <Form.Submit

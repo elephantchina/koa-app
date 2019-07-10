@@ -5,6 +5,10 @@
   "dependencies": {
     "@alifd/next": "^1.15.11",
     "@icedesign/form-binder": "^1.0.6",
+    "@icedesign/foundation-symbol": "^1.0.4",
+    "@icedesign/img": "^1.0.2",
+    "@icedesign/layout": "^1.0.8",
+    "@icedesign/notification": "^1.0.5",
     "@icedesign/theme": "^1.x",
     "apollo-boost": "^0.4.3",
     "graphql": "^14.4.2",
