@@ -22,8 +22,5 @@
   "bugs": {
     "url": "https://github.com/fanguyun214/koa-app/issues"
   },
-  "homepage": "https://github.com/fanguyun214/koa-app#readme",
-  "devDependencies": {
-    "@icedesign/form-binder": "^1.0.6"
-  }
+  "homepage": "https://github.com/fanguyun214/koa-app#readme"
 }

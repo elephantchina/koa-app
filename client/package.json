@@ -3,7 +3,8 @@
   "version": "1.0.9",
   "description": "该模板基于 TypeScript 适用于从 0 到 1 开始搭建项目，内置基础的页面，路由和菜单展示",
   "dependencies": {
-    "@alifd/next": "^1.x",
+    "@alifd/next": "^1.15.11",
+    "@icedesign/form-binder": "^1.0.6",
     "@icedesign/theme": "^1.x",
     "apollo-boost": "^0.4.3",
     "graphql": "^14.4.2",

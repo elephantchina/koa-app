@@ -8,7 +8,7 @@
     "dev": "nodemon src/index.js",
     "server": "nodemon lib/index.js",
     "pm2": "pm2 start lib/index.js",
-    "build": "babel src --out-dir lib",
+    "build": "cross-env PROT=80 babel src --out-dir lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

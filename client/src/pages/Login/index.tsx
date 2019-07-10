@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Input, Checkbox, Grid, Message, Icon, Form } from '@alifd/next';
+import {
+  Input,
+  Checkbox,
+  Grid,
+  Message,
+  Icon,
+  Form,
+  Message,
+} from '@alifd/next';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import styles from './style.module.scss';
@@ -36,7 +44,11 @@ export default function Index() {
     addTodo({
       variables: { email: values.email, password: values.password },
     }).then(res => {
-      console.log(res);
+      const {
+        login: { token },
+      } = res.data;
+      localStorage.setItem('X-CROSS-TOKEN', token);
+      Message.success('登录成功！');
     });
     // Message.success('登录成功');
     // 登录成功后做对应的逻辑处理

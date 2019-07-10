@@ -99,7 +99,7 @@ router.post('/login', async ctx => {
   const user = findResult[0];
   const password = ctx.request.body.password;
   if (findResult.length === 0) {
-    ctx.status = 404;
+    ctx.status = 400;
     ctx.body = {
       msg: '用户不存在！',
     };
