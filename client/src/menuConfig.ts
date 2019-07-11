@@ -28,7 +28,7 @@ const headerMenuConfig = [
 const asideMenuConfig = [
   {
     name: '首页',
-    path: '/main',
+    path: '/app/main',
     icon: 'home',
   },
   {

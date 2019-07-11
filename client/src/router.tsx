@@ -14,7 +14,7 @@ import routes from './routerConfig';
 import '@alifd/next/reset.scss';
 
 const RouteItem = props => {
-  const { redirect, path: routePath, component, key } = props;
+	const { redirect, path: routePath, component, key } = props;
   if (redirect) {
     return <Redirect exact key={key} from={routePath} to={redirect} />;
   }
@@ -62,7 +62,8 @@ const router = () => {
                 }}
               />
             );
-          })}
+					})}
+					<Redirect exact from="/" to="/app/main" />
         </Switch>
       </Router>
     </ApolloProvider>

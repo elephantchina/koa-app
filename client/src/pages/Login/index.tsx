@@ -45,7 +45,7 @@ export default function Index(props) {
       } = res.data;
       localStorage.setItem('X-CROSS-TOKEN', token);
       Message.success('登录成功！');
-      history.push('/main');
+      history.push('/app/main');
     });
   };
 

@@ -13,7 +13,7 @@ function Header(props) {
 
   const logout = () => {
     localStorage.clear('X-CROSS-TOKEN');
-    history.replace('/login');
+    history.replace('/user/login');
   };
 
   return (

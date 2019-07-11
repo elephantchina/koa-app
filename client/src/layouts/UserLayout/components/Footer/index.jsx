@@ -16,18 +16,10 @@ export default function Footer({ className, style }) {
     >
       <div className={styles.iceLayoutFooterBody}>
         <div style={{ filter: 'grayscale(100%)', opacity: 0.3 }}>
-          <Logo style={{ color: '#666' }} />
+          <Logo style={{ color: '#999' }} />
         </div>
         <div className={styles.copyright}>
-          © 2018 Theme designed by{' '}
-          <a
-            href="https://github.com/alibaba/ice"
-            target="_blank"
-            className={styles.copyrightLink}
-            rel="noopener noreferrer"
-          >
-            ICE
-          </a>
+          © Apollo
         </div>
       </div>
     </Layout.Footer>
