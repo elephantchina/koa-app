@@ -18,8 +18,8 @@ function Header(props) {
 
   return (
     <div className={styles.headerContainer}>
-			{/* <Logo isDark /> */}
-			<p></p>
+      {/* <Logo isDark /> */}
+      <p />
       <div className={styles.headerNavbar}>
         <Nav
           className={styles.headerNavbarMenu}
@@ -137,12 +137,12 @@ function Header(props) {
               />
               <div className={styles.userProfile}>
                 <span className={styles.userName} style={{ fontSize: '13px' }}>
-                  淘小宝
+                  超级管理员
                 </span>
                 {/* <br />
                 <span className={styles.userDepartment}>技术部</span> */}
               </div>
-              &nbsp;
+              &nbsp;&nbsp;
               <Icon type="arrow-down" size="xxs" className={styles.iconDown} />
             </div>
           }

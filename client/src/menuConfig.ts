@@ -32,29 +32,22 @@ const asideMenuConfig = [
     icon: 'home',
   },
   {
-    name: '邀请概览',
-    path: '/invite',
-    icon: 'cascades',
+    name: '用户管理',
+    path: '/people',
+    icon: 'yonghu',
     children: [
-      { name: '邀请列表', path: '/invite/list' },
-      { name: '评测团队', path: '/invite/team' },
-      { name: '新增成员', path: '/invite/add' },
+      { name: '新增用户', path: '/people/add' },
+      { name: '用户列表', path: '/people/list' },
     ],
   },
   {
-    name: '邀评设置',
-    path: '/topic',
+    name: '系统设置',
+    path: '/system',
     icon: 'shezhi',
     children: [
-      { name: '话题列表', path: '/topic/list' },
-      { name: '新增话题', path: '/topic/add' },
+      { name: '话题列表', path: '/app/sys/1' },
+      { name: '新增话题', path: '/app/sys/2' },
     ],
-  },
-  {
-    name: '基本设置',
-    path: '/setting',
-    icon: 'yonghu',
-    children: [{ name: '个人设置', path: '/setting/my' }],
   },
 ];
 

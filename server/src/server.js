@@ -19,6 +19,7 @@ app.use(bodyParser());
 
 //路由
 router.get('/', async ctx => {
+	console.log(ctx.request)
   ctx.body = {
     msg: 'hello koa graphql!',
   };

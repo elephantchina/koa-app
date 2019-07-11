@@ -13,12 +13,12 @@ const graphqlServer = new ApolloServer({
   // Schema
   typeDefs,
   // 解析器
-	resolvers,
-	// 数据源
+  resolvers,
+  // 数据源
   dataSources: () => initDatasource(),
   // 上下文对象
   context: ({ ctx }) => ({
-    auth: ctx.req.headers['x-access-token'],
+    auth: ctx.req.headers['authorization'],
   }),
   // 内省
   // introspection: mode === 'develop' ? true : false,

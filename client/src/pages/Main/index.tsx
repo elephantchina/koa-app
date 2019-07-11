@@ -1,12 +1,6 @@
 import React from 'react';
-import Guide from '../../components/Guide';
-import Greeting from '../../components/Greeting';
+import MainContainer from '../../components/MainContainer';
 
 export default function Main() {
-  return (
-    <div>
-      <Greeting name="TypeScript" />
-      <Guide />
-    </div>
-  );
+  return <MainContainer title="首页">Hello World!</MainContainer>;
 }

@@ -3,7 +3,7 @@ import { RESTDataSource } from 'apollo-datasource-rest';
 class UserAPI extends RESTDataSource {
   constructor() {
     super();
-		const port = process.env.PORT || 5000;
+    const port = process.env.PORT || 5000;
     this.baseURL = `http://127.0.0.1:${port}/api/users`;
   }
 
@@ -17,14 +17,14 @@ class UserAPI extends RESTDataSource {
   }
 
   // 这里鉴权做的比较蠢，大家不要模仿
-  async getUsers(Authorization) {
+  async getUsers(auth) {
     let { data } = await this.get('list', null, {
       headers: {
-        Authorization,
+        Authorization: auth,
       },
     });
     return {
-      data,
+      userList: data,
     };
   }
 

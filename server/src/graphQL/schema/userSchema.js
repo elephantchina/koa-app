@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server-koa';
 
 const UserSchema = gql`
+  scalar Date
 
   type User {
     """
@@ -19,6 +20,7 @@ const UserSchema = gql`
     头像
     """
     avatar: String!
+    date: Date
   }
 
   # 用户信息
@@ -26,10 +28,10 @@ const UserSchema = gql`
     userList: [User]
   }
 
-	# 用户登录成功信息
-	type LoginReponse {
+  # 用户登录成功信息
+  type LoginReponse {
     token: String!
-		success: String!
+    success: String!
   }
 `;
 
