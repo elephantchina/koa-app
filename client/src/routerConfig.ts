@@ -3,6 +3,7 @@ import Login from '@/pages/Login';
 import BasicLayout from '@/layouts/BasicLayout';
 import UserLayout from '@/layouts/UserLayout';
 import UserList from '@/pages/User/List';
+import UserAdd from '@/pages/User/Add';
 
 const routerConfig = [
   {
@@ -22,19 +23,23 @@ const routerConfig = [
       {
         path: '/main',
         component: Main,
-      }
+      },
     ],
-	},
-	{
-		path: '/people',
-		component: UserLayout,
-		children: [
-			{
-				path: '/list',
-				component: UserList,
-			},
-		],
-	},
+  },
+  {
+    path: '/people',
+    component: UserLayout,
+    children: [
+      {
+        path: '/list',
+        component: UserList,
+      },
+      {
+        path: '/add',
+        component: UserAdd,
+      },
+    ],
+  },
 ];
 
 export default routerConfig;

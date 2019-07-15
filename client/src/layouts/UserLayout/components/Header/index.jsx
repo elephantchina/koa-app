@@ -153,9 +153,9 @@ function Header(props) {
             <li className={styles.userProfileMenuItem} onClick={logout}>
               退出登录
             </li>
-            <li className={styles.userProfileMenuItem}>
+            {/* <li className={styles.userProfileMenuItem}>
               <Link to="/setting/my">个人设置</Link>
-            </li>
+            </li> */}
           </ul>
         </Balloon>
       </div>
