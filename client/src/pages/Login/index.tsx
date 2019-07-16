@@ -67,7 +67,7 @@ export default function Index(props) {
         <Mutation mutation={USER_LOGIN}>
           {(login) => (
             <Form value={value} onChange={formChange} size="large">
-              <Item required requiredMessage="必填">
+              <Item required requiredMessage="请输入邮箱">
                 <Input
                   name="email"
                   size="large"
@@ -75,10 +75,11 @@ export default function Index(props) {
                   placeholder="账号"
                 />
               </Item>
-              <Item required requiredMessage="必填">
+              <Item required requiredMessage="请输入密码">
                 <Input
                   name="password"
-                  size="large"
+									size="large"
+									maxLength={18}
                   htmlType="password"
                   placeholder="密码"
                 />

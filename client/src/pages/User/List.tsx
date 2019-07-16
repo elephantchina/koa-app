@@ -40,8 +40,8 @@ export default function UserList() {
                 cell={value => (
                   <img
                     src={value}
-                    width="60"
-                    style={{ borderRadius: '30px' }}
+                    width="35"
+                    style={{ borderRadius: '20px' }}
                   />
                 )}
               />
