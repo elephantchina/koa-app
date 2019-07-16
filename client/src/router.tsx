@@ -14,7 +14,7 @@ import routes from './routerConfig';
 import '@alifd/next/reset.scss';
 
 const RouteItem = props => {
-	const { redirect, path: routePath, component, key } = props;
+  const { redirect, path: routePath, component, key } = props;
   if (redirect) {
     return <Redirect exact key={key} from={routePath} to={redirect} />;
   }
@@ -36,7 +36,7 @@ const router = () => {
                   return children ? (
                     <RouteComponent key={id} {...props}>
                       <Switch>
-                        {children.map((routeChild, idx) => {
+                        {children.map((routeChild: any, idx:any) => {
                           const {
                             redirect,
                             path: childPath,
@@ -48,7 +48,7 @@ const router = () => {
                             path: childPath && path.join(route.path, childPath),
                             component,
                           });
-                        })}
+                        }) as any}
                       </Switch>
                     </RouteComponent>
                   ) : (
@@ -62,8 +62,8 @@ const router = () => {
                 }}
               />
             );
-					})}
-					<Redirect exact from="/" to="/app/main" />
+          })}
+          <Redirect exact from="/" to="/app/main" />
         </Switch>
       </Router>
     </ApolloProvider>
