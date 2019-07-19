@@ -9,7 +9,7 @@ import { onError } from 'apollo-link-error';
 import IceNotification from '@icedesign/notification';
 const httpLink = createHttpLink({
   uri:
-    process.env.NODE_ENV === 'PRD'
+    process.env.NODE_ENV === 'prd'
       ? 'https://server.jasonfan.now.sh/graphql'
       : 'http://127.0.0.1:5000/graphql',
   // credentials: 'include',
