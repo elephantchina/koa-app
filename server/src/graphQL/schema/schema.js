@@ -9,6 +9,7 @@ const TypeDefs = gql`
     #  测试hello
     hello: String
     userList: UserListReponse
+    user: User
   }
 
   type Mutation {

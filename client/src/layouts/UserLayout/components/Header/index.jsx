@@ -4,8 +4,21 @@ import { Balloon, Icon, Nav } from '@alifd/next';
 import FoundationSymbol from '@icedesign/foundation-symbol';
 import IceImg from '@icedesign/img';
 import { headerMenuConfig } from '@/menuConfig';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+
 import Logo from '../Logo';
 import styles from './index.module.scss';
+
+const USER_ONE = gql`
+  query user {
+    user {
+      name
+      email
+      avatar
+    }
+  }
+`;
 
 function Header(props) {
   const { location = {}, history } = props;
@@ -118,46 +131,62 @@ function Header(props) {
               );
             })}
         </Nav>
-        <Balloon
-          triggerType="hover"
-          trigger={
-            <div
-              className={styles.iceHeaderUserpannel}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                fontSize: 12,
-              }}
-            >
-              <IceImg
-                height={40}
-                width={40}
-                src={require('./images/avatar.png')}
-                className={styles.userAvatar}
-              />
-              <div className={styles.userProfile}>
-                <span className={styles.userName} style={{ fontSize: '13px' }}>
-                  超级管理员
-                </span>
-                {/* <br />
+        <Query query={USER_ONE}>
+          {({ loading, error, data: { user } }) => {
+            if (loading) return <p style={{lineHeight: '20px'}}>Loading...</p>;
+            if (error) return `Error! ${error.message}`;
+            console.log(user);
+            return (
+              <Balloon
+                triggerType="hover"
+                trigger={
+                  <div
+                    className={styles.iceHeaderUserpannel}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: 12,
+                    }}
+                  >
+                    <IceImg
+                      height={40}
+                      width={40}
+                      src={user && user.avatar}
+                      className={styles.userAvatar}
+                    />
+                    <div className={styles.userProfile}>
+                      <span
+                        className={styles.userName}
+                        style={{ fontSize: '13px' }}
+                      >
+                        {user && user.name}
+                      </span>
+                      {/* <br />
                 <span className={styles.userDepartment}>技术部</span> */}
-              </div>
-              &nbsp;&nbsp;
-              <Icon type="arrow-down" size="xxs" className={styles.iconDown} />
-            </div>
-          }
-          closable={false}
-          className={styles.userProfileMenu}
-        >
-          <ul>
-            <li className={styles.userProfileMenuItem} onClick={logout}>
-              退出登录
-            </li>
-            {/* <li className={styles.userProfileMenuItem}>
+                    </div>
+                    &nbsp;&nbsp;
+                    <Icon
+                      type="arrow-down"
+                      size="xxs"
+                      className={styles.iconDown}
+                    />
+                  </div>
+                }
+                closable={false}
+                className={styles.userProfileMenu}
+              >
+                <ul>
+                  <li className={styles.userProfileMenuItem} onClick={logout}>
+                    退出登录
+                  </li>
+                  {/* <li className={styles.userProfileMenuItem}>
               <Link to="/setting/my">个人设置</Link>
             </li> */}
-          </ul>
-        </Balloon>
+                </ul>
+              </Balloon>
+            );
+          }}
+        </Query>
       </div>
     </div>
   );

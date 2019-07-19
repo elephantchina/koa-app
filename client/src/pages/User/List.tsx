@@ -2,7 +2,7 @@ import React from 'react';
 import MainContainer from '../../components/MainContainer';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Table } from '@alifd/next';
+import { Table, Loading } from '@alifd/next';
 import moment from 'moment';
 // import * as GET_USERS from './graphql/list.graphql';
 
@@ -32,7 +32,7 @@ export default function UserList() {
           if (error) return `Error! ${error.message}`;
           const list = userList && userList.userList;
           return (
-            <Table dataSource={list} loading={loading}>
+            <Table dataSource={list} loading={loading} loadingComponent={props => <Loading size="medium" style={{width: '100%', height: '100%'}}/>}>
               <Table.Column
                 title="头像"
                 align="center"

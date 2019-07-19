@@ -3,7 +3,10 @@ const userResolvers = {
     hello: () => 'Hello world!',
     userList: async (parent, args, { dataSources, auth }, info) => {
       return dataSources.UserAPI.getUsers(auth);
-    },
+		},
+		user: async (parent, args, { dataSources, auth }, info) => {
+      return dataSources.UserAPI.getUserOne(auth);
+		},
   },
   Mutation: {
     login: async (parent, args, { dataSources }, info) => {

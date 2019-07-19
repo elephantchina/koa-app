@@ -32,7 +32,17 @@ class UserAPI extends RESTDataSource {
   async addUser(args) {
     let res = await this.post('register', { ...args });
     return res;
-  }
+	}
+	
+	// 获取当前用户
+	async getUserOne(auth) {
+		let res = await this.get('current', null, {
+      headers: {
+        Authorization: auth,
+      },
+		});
+    return res;
+	}
 
   // async getUserById(params, auth) {
   //   let { data, msg, code } = await this.get('/', params, {
