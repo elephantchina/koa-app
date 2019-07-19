@@ -65,9 +65,15 @@ export default function Index(props) {
       <div className={styles.formContainer}>
         <h4 className={styles.formTitle}>登 录</h4>
         <Mutation mutation={USER_LOGIN}>
-          {(login) => (
+          {login => (
             <Form value={value} onChange={formChange} size="large">
-              <Item required requiredMessage="请输入邮箱">
+              <Item
+                required
+                requiredMessage="请输入邮箱"
+                hasFeedback
+                format="email"
+                formatMessage="请输入正确的邮箱格式！"
+              >
                 <Input
                   name="email"
                   size="large"
@@ -75,11 +81,18 @@ export default function Index(props) {
                   placeholder="账号"
                 />
               </Item>
-              <Item required requiredMessage="请输入密码">
+              <Item
+                required
+                requiredMessage="请输入密码"
+                hasFeedback
+                minLength={6}
+                maxLength={18}
+								minmaxLengthMessage="密码长度为6-18位数字字符"
+              >
                 <Input
                   name="password"
-									size="large"
-									maxLength={18}
+                  size="large"
+                  maxLength={18}
                   htmlType="password"
                   placeholder="密码"
                 />

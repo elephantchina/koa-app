@@ -33,6 +33,13 @@ const UserSchema = gql`
     token: String!
     success: String!
   }
+
+  # 通用成功信息
+  type BaseResponse {
+    data: String!
+    msg: String!
+    code: Int!
+  }
 `;
 
 export default UserSchema;

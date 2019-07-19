@@ -75,7 +75,12 @@ router.post('/register', async ctx => {
       });
 
     // 返回Json数据
-    ctx.body = newUser;
+    // ctx.body = newUser;
+    ctx.body = {
+      data: 'success',
+      msg: 'success',
+      code: 1,
+    };
   }
 });
 
@@ -115,7 +120,7 @@ router.post('/login', async ctx => {
         avatar: user.avatar,
       };
       const token = jwt.sign(payload, keys.secretOrKey, {
-        expiresIn: 3600,
+        expiresIn: 3600 * 24,
       });
       ctx.status = 200;
       ctx.body = {
@@ -169,7 +174,7 @@ router.get(
     // console.log(findResult);
     ctx.status = 200;
     ctx.body = {
-			data: findResult,
+      data: findResult,
     };
   },
 );

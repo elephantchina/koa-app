@@ -13,6 +13,7 @@
     "@icedesign/theme": "^1.x",
     "@icedesign/title": "^1.0.3",
     "apollo-boost": "^0.4.3",
+    "cross-env": "^5.2.0",
     "graphql": "^14.4.2",
     "graphql-config": "^2.2.1",
     "moment": "^2.24.0",
@@ -34,7 +35,7 @@
   },
   "scripts": {
     "start": "ice-scripts dev",
-    "build": "ice-scripts build",
+    "build": "cross-env NODE_ENV=prd ice-scripts build",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint --cache --ext .js,.jsx ./",
     "stylelint": "stylelint ./**/*.scss"

@@ -9,6 +9,9 @@ const userResolvers = {
     login: async (parent, args, { dataSources }, info) => {
       return dataSources.UserAPI.userLogin(args);
     },
+    addUser: async (parent, args, { dataSources }, info) => {
+      return dataSources.UserAPI.addUser(args);
+    },
   },
 };
 
