@@ -42,7 +42,7 @@ const errorLink = onError(errorObj => {
         description: '未登录或者登录失效，请重新登录！',
       });
       localStorage.removeItem('X-CROSS-TOKEN');
-      location.href = '/user/login';
+      location.href = '#/user/login';
     } else {
       IceNotification.error({
         message: '操作失败',
