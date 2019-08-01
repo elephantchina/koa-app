@@ -30,7 +30,7 @@ const DELETE_USER = gql`
   }
 `;
 
-export default function UserList() {
+export default function UserList(props: any) {
   const handleDelete = (email: string, deleteUser: any, refetch: any) => {
     deleteUser({
       variables: {
@@ -42,6 +42,10 @@ export default function UserList() {
     });
   };
 
+  const handleEdit = (record: any) => {
+    console.log(record);
+  };
+
   const redenTime = (value: string) => {
     return moment(value).format(`YYYY-MM-DD HH:MM:ss`);
   };
@@ -50,12 +54,18 @@ export default function UserList() {
     return (
       <Mutation mutation={DELETE_USER}>
         {deleteUser => (
-          <a
-            href="javascript:;"
-            onClick={() => handleDelete(record.email, deleteUser, refetch)}
-          >
-            删除
-          </a>
+          <>
+            <a href="javascript:;" onClick={() => handleEdit(record)}>
+              编辑
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+              href="javascript:;"
+              onClick={() => handleDelete(record.email, deleteUser, refetch)}
+            >
+              删除
+            </a>
+          </>
         )}
       </Mutation>
     );

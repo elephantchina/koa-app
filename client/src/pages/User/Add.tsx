@@ -88,7 +88,7 @@ export default class UserAddd extends Component<Props> {
                 requiredMessage="请输入昵称"
                 hasFeedback
                 minLength={2}
-                maxLength={20}
+                maxLength={40}
                 minmaxLengthMessage="昵称长度为2-20个字符"
               >
                 <Input name="name" placeholder="请输入昵称" />
