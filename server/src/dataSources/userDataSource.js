@@ -28,21 +28,31 @@ class UserAPI extends RESTDataSource {
     };
   }
 
-	// 新增用户
+  // 新增用户
   async addUser(args) {
     let res = await this.post('register', { ...args });
     return res;
-	}
-	
-	// 获取当前用户
-	async getUserOne(auth) {
-		let res = await this.get('current', null, {
+  }
+
+  // 获取当前用户
+  async getUserOne(auth) {
+    let res = await this.get('current', null, {
       headers: {
         Authorization: auth,
       },
-		});
+    });
     return res;
-	}
+  }
+
+  // 删除用户
+  async deleteUser(args, auth) {
+    let res = await this.get('delete', args, {
+      headers: {
+        Authorization: auth,
+      },
+    });
+    return res;
+  }
 
   // async getUserById(params, auth) {
   //   let { data, msg, code } = await this.get('/', params, {

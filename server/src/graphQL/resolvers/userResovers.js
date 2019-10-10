@@ -3,10 +3,10 @@ const userResolvers = {
     hello: () => 'Hello world!',
     userList: async (parent, args, { dataSources, auth }, info) => {
       return dataSources.UserAPI.getUsers(auth);
-		},
-		user: async (parent, args, { dataSources, auth }, info) => {
+    },
+    user: async (parent, args, { dataSources, auth }, info) => {
       return dataSources.UserAPI.getUserOne(auth);
-		},
+    },
   },
   Mutation: {
     login: async (parent, args, { dataSources }, info) => {
@@ -14,6 +14,9 @@ const userResolvers = {
     },
     addUser: async (parent, args, { dataSources }, info) => {
       return dataSources.UserAPI.addUser(args);
+    },
+    deleteUser: async (parent, args, { dataSources, auth }, info) => {
+      return dataSources.UserAPI.deleteUser(args, auth);
     },
   },
 };

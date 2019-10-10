@@ -179,4 +179,38 @@ router.get(
   },
 );
 
+/**
+ * @route get api/users/delete
+ * @dess 删除用户接口
+ * @accsee 通用response
+ */
+router.get(
+  '/delete',
+  passport.authenticate('jwt', { session: false }),
+  async ctx => {
+    const query = ctx.request.query;
+    if (query.email) {
+      const { deletedCount } = await User.remove(
+        { email: query.email },
+        err => {
+          if (err) return console.error(err);
+        },
+			);
+      ctx.status = deletedCount ? 200 : 400;
+      ctx.body = {
+        msg: deletedCount ? 'success' : '用户不存在',
+        data: deletedCount,
+        code: deletedCount ? 0 : 1,
+      };
+    } else {
+      ctx.status = 400;
+      ctx.body = {
+        msg: '请传入正确的邮箱！',
+        data: 'fail',
+        code: 1,
+      };
+    }
+  },
+);
+
 export default router.routes();

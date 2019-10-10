@@ -88,7 +88,7 @@ export default class UserAddd extends Component<Props> {
                 requiredMessage="请输入昵称"
                 hasFeedback
                 minLength={2}
-                maxLength={20}
+                maxLength={40}
                 minmaxLengthMessage="昵称长度为2-20个字符"
               >
                 <Input name="name" placeholder="请输入昵称" />
@@ -109,7 +109,7 @@ export default class UserAddd extends Component<Props> {
                 hasFeedback
                 minLength={6}
                 maxLength={18}
-                minmaxLengthMessage="密码长度为3-20个字符"
+                minmaxLengthMessage="密码长度为6-20个字符"
                 requiredMessage="请输入密码"
                 pattern={/^[a-z0-9]+$/i}
                 patternMessage="只能由数字和英文组成"
