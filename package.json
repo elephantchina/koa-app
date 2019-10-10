@@ -10,7 +10,7 @@
     "sdeploy": "cd server && now",
     "cdev": "cd client && yarn start",
     "cbuild": "cd client && yarn build",
-    "cdeploy": "cd client && now ./dist",
+    "cdeploy": "cd client && now ./build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

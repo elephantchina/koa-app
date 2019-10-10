@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start": "ice-scripts dev",
-    "build": "cross-env NODE_ENV=prd ice-scripts build",
+    "build": "ice-scripts build",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint --cache --ext .js,.jsx ./",
     "stylelint": "stylelint ./**/*.scss"

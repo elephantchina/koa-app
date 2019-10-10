@@ -7,9 +7,10 @@ import {
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import IceNotification from '@icedesign/notification';
+
 const httpLink = createHttpLink({
   uri:
-    process.env.NODE_ENV === 'prd'
+    process.env.NODE_ENV === 'production'
       ? 'https://server.jasonfan.now.sh/graphql'
       : 'http://127.0.0.1:5000/graphql',
   // credentials: 'include',
@@ -42,7 +43,7 @@ const errorLink = onError(errorObj => {
         description: '未登录或者登录失效，请重新登录！',
       });
       localStorage.removeItem('X-CROSS-TOKEN');
-      location.href = '/user/login';
+      location.href = '#/user/login';
     } else {
       IceNotification.error({
         message: '操作失败',
