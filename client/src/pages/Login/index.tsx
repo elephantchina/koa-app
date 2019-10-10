@@ -77,7 +77,7 @@ export default function Index(props) {
                 <Input
                   name="email"
                   size="large"
-                  maxLength={20}
+                  maxLength={40}
                   placeholder="账号"
                 />
               </Item>
@@ -87,7 +87,7 @@ export default function Index(props) {
                 hasFeedback
                 minLength={6}
                 maxLength={18}
-								minmaxLengthMessage="密码长度为6-18位数字字符"
+                minmaxLengthMessage="密码长度为6-18位数字字符"
               >
                 <Input
                   name="password"
