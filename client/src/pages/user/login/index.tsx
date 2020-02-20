@@ -1,6 +1,7 @@
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox } from 'antd';
 import React, { useState } from 'react';
+import { useMutation } from 'react-apollo-hooks';
 import { Dispatch, AnyAction } from 'redux';
 import { Link } from 'umi';
 import { connect } from 'dva';
@@ -8,6 +9,7 @@ import { StateType } from '@/models/login';
 import { LoginParamsType } from '@/services/login';
 import { ConnectState } from '@/models/connect';
 import LoginFrom from './components/Login';
+import { LoginDocument } from '../../../graphql/components';
 
 import styles from './style.less';
 
@@ -37,12 +39,20 @@ const Login: React.FC<LoginProps> = props => {
   const [autoLogin, setAutoLogin] = useState(true);
   const [type, setType] = useState<string>('account');
 
+  const [logon, { loading: mutationLoading, error: mutationError }] = useMutation(LoginDocument);
+
   const handleSubmit = (values: LoginParamsType) => {
-    const { dispatch } = props;
-    dispatch({
-      type: 'login/login',
-      payload: { ...values, type },
-    });
+    logon({
+      variables: {
+        email: '289696260@qq.com',
+        password: '123456',
+      },
+    }).then(res => console.log(res));
+    // const { dispatch } = props;
+    // dispatch({
+    //   type: 'login/login',
+    //   payload: { ...values, type },
+    // });
   };
   return (
     <div className={styles.main}>
