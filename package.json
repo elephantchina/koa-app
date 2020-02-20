@@ -4,7 +4,7 @@
   "description": "koa+apollo+umi",
   "main": "index.js",
   "scripts": {
-    "ins": "cd server && echo \"install server --->\" && cnpm install && cd ../client && echo \"install client --->\" && cnpm install",
+    "ins": "cd server && echo \"install server --->\" && npm install && cd ../client && echo \"install client --->\" && npm install",
     "sdev": "cd server && yarn dev",
     "sbuild": "cd server && yarn build",
     "sdeploy": "cd server && now",

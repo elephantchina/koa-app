@@ -1,31 +1,36 @@
 {
-  "compileOnSave": false,
-  "buildOnSave": false,
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "build",
+    "outDir": "build/dist",
     "module": "esnext",
-    "target": "es6",
-    "jsx": "react",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "lib": ["es6", "dom"],
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
     "sourceMap": true,
-    "allowJs": true,
-    "rootDir": "src",
+    "baseUrl": ".",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": false,
-    "importHelpers": true,
-    "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
+    "allowJs": true,
     "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "strict": true,
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/*"],
-  "exclude": ["node_modules", "build", "public"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "tslint:latest",
+    "tslint-config-prettier"
+  ]
 }
