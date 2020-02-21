@@ -31,7 +31,8 @@
     "test:component": "umi test ./src/components",
     "tsc": "tsc",
     "ui": "umi ui",
-    "generate": "graphql-codegen -r dotenv/config"
+    "generate": "graphql-codegen -r dotenv/config",
+    "now": "umi build && now ./dist"
   },
   "husky": {},
   "lint-staged": {
