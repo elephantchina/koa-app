@@ -9,7 +9,7 @@ const NoFoundPage: React.FC<{}> = () => (
     subTitle="Sorry, the page you visited does not exist."
     extra={
       <Button type="primary" onClick={() => router.push('/')}>
-        Back Home
+        返回主页
       </Button>
     }
   />

@@ -1,13 +1,15 @@
-import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
+// import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox } from 'antd';
 import React, { useState } from 'react';
 import { useMutation } from 'react-apollo-hooks';
 import { Dispatch, AnyAction } from 'redux';
-import { Link } from 'umi';
+// import { Link } from 'umi';
+import router from 'umi/router';
 import { connect } from 'dva';
 import { StateType } from '@/models/login';
 import { LoginParamsType } from '@/services/login';
 import { ConnectState } from '@/models/connect';
+import { setAuthority } from '@/utils/authority';
 import LoginFrom from './components/Login';
 import { LoginDocument } from '../../../graphql/components';
 
@@ -20,34 +22,41 @@ interface LoginProps {
   submitting?: boolean;
 }
 
-const LoginMessage: React.FC<{
-  content: string;
-}> = ({ content }) => (
-  <Alert
-    style={{
-      marginBottom: 24,
-    }}
-    message={content}
-    type="error"
-    showIcon
-  />
-);
+// const LoginMessage: React.FC<{
+//   content: string;
+// }> = ({ content }) => (
+//   <Alert
+//     style={{
+//       marginBottom: 24,
+//     }}
+//     message={content}
+//     type="error"
+//     showIcon
+//   />
+// );
 
 const Login: React.FC<LoginProps> = props => {
-  const { userLogin = {}, submitting } = props;
-  const { status, type: loginType } = userLogin;
+  // const { submitting } = props;
   const [autoLogin, setAutoLogin] = useState(true);
   const [type, setType] = useState<string>('account');
 
-  const [logon, { loading: mutationLoading, error: mutationError }] = useMutation(LoginDocument);
+  const [logon, { loading }] = useMutation(LoginDocument);
 
   const handleSubmit = (values: LoginParamsType) => {
+    console.log(values);
     logon({
       variables: {
-        email: '289696260@qq.com',
-        password: '123456',
+        email: values.userName,
+        password: values.password,
       },
-    }).then(res => console.log(res));
+    })
+      .then(({ data: { login } }: any) => {
+        setAuthority('admin', login.token);
+        router.push('/');
+      })
+      .catch(err => {
+        console.error(err);
+      });
     // const { dispatch } = props;
     // dispatch({
     //   type: 'login/login',
@@ -58,32 +67,40 @@ const Login: React.FC<LoginProps> = props => {
     <div className={styles.main}>
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <Tab key="account" tab="账户密码登录">
-          {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误（admin/ant.design）" />
-          )}
-
           <UserName
             name="userName"
-            placeholder="用户名: admin or user"
+            placeholder="请输入用户名"
             rules={[
               {
                 required: true,
                 message: '请输入用户名!',
               },
+              {
+                type: 'email',
+                message: '请输入正确的邮箱地址',
+              },
             ]}
           />
           <Password
             name="password"
-            placeholder="密码: ant.design"
+            placeholder="请输入密码"
             rules={[
               {
                 required: true,
                 message: '请输入密码！',
               },
+              {
+                min: 6,
+                message: '密码最少6位字符',
+              },
+              {
+                max: 15,
+                message: '密码最大15位字符',
+              },
             ]}
           />
         </Tab>
-        <Tab key="mobile" tab="手机号登录">
+        {/* <Tab key="mobile" tab="手机号登录">
           {status === 'error' && loginType === 'mobile' && !submitting && (
             <LoginMessage content="验证码错误" />
           )}
@@ -114,7 +131,7 @@ const Login: React.FC<LoginProps> = props => {
               },
             ]}
           />
-        </Tab>
+        </Tab> */}
         <div>
           <Checkbox checked={autoLogin} onChange={e => setAutoLogin(e.target.checked)}>
             自动登录
@@ -127,8 +144,8 @@ const Login: React.FC<LoginProps> = props => {
             忘记密码
           </a>
         </div>
-        <Submit loading={submitting}>登录</Submit>
-        <div className={styles.other}>
+        <Submit loading={loading}>登录</Submit>
+        {/* <div className={styles.other}>
           其他登录方式
           <AlipayCircleOutlined className={styles.icon} />
           <TaobaoCircleOutlined className={styles.icon} />
@@ -136,7 +153,7 @@ const Login: React.FC<LoginProps> = props => {
           <Link className={styles.register} to="/user/register">
             注册账户
           </Link>
-        </div>
+        </div> */}
       </LoginFrom>
     </div>
   );

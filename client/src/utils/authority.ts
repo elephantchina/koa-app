@@ -3,7 +3,7 @@ import { reloadAuthorized } from './Authorized';
 // use localStorage to store the authority info, which might be sent from server in actual project.
 export function getAuthority(str?: string): string | string[] {
   const authorityString =
-    typeof str === 'undefined' && localStorage ? localStorage.getItem('antd-pro-authority') : str;
+    typeof str === 'undefined' && localStorage ? localStorage.getItem('ELE_AUTH') : str;
   // authorityString could be admin, "admin", ["admin"]
   let authority;
   try {
@@ -18,15 +18,17 @@ export function getAuthority(str?: string): string | string[] {
   }
   // preview.pro.ant.design only do not use in your production.
   // preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
-  if (!authority && ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site') {
-    return ['admin'];
-  }
+  // if (!authority && ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site') {
+  //   return ['admin'];
+  // }
+  console.log('authority', authority);
   return authority;
 }
 
-export function setAuthority(authority: string | string[]): void {
+export function setAuthority(authority: string | string[], token: string = ''): void {
   const proAuthority = typeof authority === 'string' ? [authority] : authority;
-  localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority));
+  localStorage.setItem('ELE_AUTH', JSON.stringify(proAuthority));
+  localStorage.setItem('ELE_TOKEN', token);
   // auto reload
   reloadAuthorized();
 }

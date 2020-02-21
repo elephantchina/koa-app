@@ -19,9 +19,14 @@ const AuthComponent: React.FC<AuthComponentProps> = ({
   },
   user,
 }) => {
-  const { currentUser } = user;
+  // const { currentUser } = user;
   const { routes = [] } = route;
-  const isLogin = currentUser && currentUser.name;
+  // const isLogin = currentUser && currentUser.name;
+  const isLogin = localStorage.getItem('ELE_TOKEN');
+  console.log('isLogin', isLogin);
+  if (!isLogin) {
+    return <Redirect to="/user/login" />;
+  }
   return (
     <Authorized
       authority={getRouteAuthority(location.pathname, routes) || ''}

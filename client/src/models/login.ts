@@ -62,6 +62,7 @@ const Model: LoginModelType = {
 
     logout() {
       const { redirect } = getPageQuery();
+      localStorage.clear();
       // Note: There may be security issues, please note
       if (window.location.pathname !== '/user/login' && !redirect) {
         router.replace({
