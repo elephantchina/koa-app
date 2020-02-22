@@ -5,11 +5,9 @@ import router from 'umi/router';
 import { message as Msg } from 'antd';
 
 const authLink = setContext(async (_, { headers }) => {
-  // const token = await getAuthToken();
-  const token = '';
-  const authorizationHeader = token
-    ? { authorization: `Bearer ${token}` }
-    : { authorization: `Bearer 3075159c-aeb0-49c5-bac2-dc01ef07e6a5` };
+  const token = localStorage.getItem('ELE_TOKEN');
+  // const token = '';
+  const authorizationHeader = token ? { authorization: token } : { authorization: `` };
 
   return {
     headers: {
@@ -22,8 +20,12 @@ const authLink = setContext(async (_, { headers }) => {
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ extensions, message, locations, path }) => {
-      const status = extensions && extensions.response.status;
-      const errMsg = extensions && extensions.response.body.msg;
+      const status = extensions && extensions.response && extensions.response.status;
+      const errMsg =
+        extensions &&
+        extensions.response &&
+        extensions.response.body &&
+        extensions.response.body.msg;
       console.info(
         `[GraphQL error]: Status: ${status}, Message: ${message}, Location: ${locations}, Path: ${path}`,
       );

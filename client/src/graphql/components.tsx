@@ -104,7 +104,7 @@ export type DeleteUserMutation = { __typename?: 'Mutation' } & {
 export type UserQueryVariables = {};
 
 export type UserQuery = { __typename?: 'Query' } & {
-  user: Maybe<{ __typename?: 'User' } & Pick<User, '_id' | 'name' | 'email' | 'avatar' | 'date'>>;
+  user: Maybe<{ __typename?: 'User' } & Pick<User, 'name' | 'email' | 'avatar' | 'date'>>;
 };
 
 export type UserListQueryVariables = {};
@@ -252,7 +252,6 @@ export type DeleteUserMutationOptions = ApolloReactCommon.BaseMutationOptions<
 export const UserDocument = gql`
   query user {
     user {
-      _id
       name
       email
       avatar

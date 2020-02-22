@@ -1,6 +1,5 @@
 query user {
   user {
-    _id
     name
     email
     avatar
