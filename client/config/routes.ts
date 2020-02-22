@@ -38,10 +38,10 @@ export const routesConfig = [
             authority: ['admin'],
             routes: [
               {
-                path: '/admin/sub-page',
+                path: '/admin/user-list',
                 name: 'user-management',
                 icon: 'smile',
-                component: './system/Admin',
+                component: './System/UserList',
                 authority: ['admin'],
               },
             ],

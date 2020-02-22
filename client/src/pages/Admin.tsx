@@ -1,7 +1,7 @@
-import React from 'react';
-import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
-import { Card, Typography, Alert } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import React from '@/pages/System/node_modules/react';
+import { HeartTwoTone, SmileTwoTone } from '@/pages/System/node_modules/@ant-design/icons';
+import { Card, Typography, Alert } from '@/pages/System/node_modules/antd';
+import { PageHeaderWrapper } from '@/pages/System/node_modules/@ant-design/pro-layout';
 
 export default (): React.ReactNode => (
   <PageHeaderWrapper content=" 这个页面只有 admin 权限才能查看">
