@@ -34,14 +34,14 @@ export const routesConfig = [
             path: '/admin',
             name: 'admin',
             icon: 'crown',
-            component: './Admin',
+            // component: './system/Admin',
             authority: ['admin'],
             routes: [
               {
                 path: '/admin/sub-page',
-                name: 'sub-page',
+                name: 'user-management',
                 icon: 'smile',
-                component: './Welcome',
+                component: './system/Admin',
                 authority: ['admin'],
               },
             ],

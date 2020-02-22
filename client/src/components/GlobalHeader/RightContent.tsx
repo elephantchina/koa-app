@@ -1,13 +1,11 @@
 import { Tooltip, Tag } from 'antd';
 // import { QuestionCircleOutlined } from '@ant-design/icons';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'dva';
 import { ConnectProps, ConnectState } from '@/models/connect';
-import { useQuery } from 'react-apollo-hooks';
 import Avatar from './AvatarDropdown';
 // import HeaderSearch from '../HeaderSearch';
 // import SelectLang from '../SelectLang';
-import { UserDocument } from '../../graphql/components';
 import styles from './index.less';
 
 export type SiderTheme = 'light' | 'dark';
@@ -25,8 +23,6 @@ const ENVTagColor = {
 const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
   const { theme, layout } = props;
   let className = styles.right;
-
-  const { data } = useQuery(UserDocument);
 
   if (theme === 'dark' && layout === 'topmenu') {
     className = `${styles.right}  ${styles.dark}`;
@@ -67,7 +63,7 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = props => {
           <QuestionCircleOutlined />
         </any>
       </Tooltip> */}
-      <Avatar currentUser={data && data.user} />
+      <Avatar />
       {REACT_APP_ENV && (
         <span>
           <Tag color={ENVTagColor[REACT_APP_ENV]}>{REACT_APP_ENV}</Tag>

@@ -20,6 +20,7 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState } from '@/models/connect';
 import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
+import { useApolloClient } from 'react-apollo-hooks';
 import logo from '../assets/logo.svg';
 
 const noMatch = (
@@ -113,6 +114,8 @@ const footerRender: BasicLayoutProps['footerRender'] = () => {
 };
 
 const BasicLayout: React.FC<BasicLayoutProps> = props => {
+  console.log('1212213');
+  const client = useApolloClient();
   const {
     dispatch,
     children,
@@ -126,11 +129,14 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
    */
 
   useEffect(() => {
-    // if (dispatch) {
-    //   dispatch({
-    //     type: 'user/fetchCurrent',
-    //   });
-    // }
+    if (dispatch) {
+      dispatch({
+        type: 'user/fetchCurrent',
+        payload: {
+          client,
+        },
+      });
+    }
   }, []);
   /**
    * init variables

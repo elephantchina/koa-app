@@ -1,5 +1,6 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
+import { UserDocument } from '../graphql/components';
 
 import { queryCurrent, query as queryUsers } from '@/services/user';
 
@@ -49,11 +50,14 @@ const UserModel: UserModelType = {
         payload: response,
       });
     },
-    *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
+    *fetchCurrent({ payload: { client } }, { call, put }) {
+      const { data } = yield client.query({
+        query: UserDocument,
+        fetchPolicy: 'no-cache',
+      });
       yield put({
         type: 'saveCurrentUser',
-        payload: response,
+        payload: data.user,
       });
     },
   },
