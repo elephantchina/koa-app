@@ -1,10 +1,20 @@
 import request from '@/utils/request';
 import { TableListParams, TableListItem } from './data';
+import { UserListDocument } from '../../../graphql/components';
 
-export async function queryRule(params?: TableListParams) {
-  return request('/api/rule', {
-    params,
+export async function queryRule(client: any, params?: TableListParams) {
+  const {
+    data: { userList },
+  } = await client.query({
+    query: UserListDocument,
+    fetchPolicy: 'no-cache',
   });
+  return {
+    list: userList,
+    pagination: {
+      total: userList.length,
+    },
+  };
 }
 
 export async function removeRule(params: { key: number[] }) {
