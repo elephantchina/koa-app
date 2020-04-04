@@ -1,4 +1,21 @@
 export const routesConfig = [
+  // Portal
+  {
+    path: '/',
+    redirect: '/portal/home',
+  },
+  {
+    path: '/portal',
+    component: '../layouts/BlankLayout',
+    routes: [
+      {
+        name: 'home',
+        path: '/portal/home',
+        component: './Portal/Home',
+      },
+    ],
+  },
+  // backend
   {
     path: '/user',
     component: '../layouts/UserLayout',
@@ -6,42 +23,38 @@ export const routesConfig = [
       {
         name: 'login',
         path: '/user/login',
-        component: './user/login',
+        component: './User/login',
       },
     ],
   },
   {
-    path: '/',
+    path: '/backend',
     component: '../layouts/SecurityLayout',
     Routes: ['src/pages/Authorized'],
     routes: [
       {
-        path: '/',
+        path: '/backend',
         component: '../layouts/BasicLayout',
         authority: ['admin', 'user'],
         routes: [
           {
-            path: '/',
-            redirect: '/welcome',
-          },
-          {
-            path: '/welcome',
+            path: '/backend/welcome',
             name: 'welcome',
             icon: 'smile',
-            component: './Welcome',
+            component: './Backend/Welcome',
           },
           {
-            path: '/admin',
+            path: '/backend/admin',
             name: 'admin',
             icon: 'crown',
             // component: './system/Admin',
             authority: ['admin'],
             routes: [
               {
-                path: '/admin/user-list',
+                path: '/backend/admin/user-list',
                 name: 'user-management',
                 icon: 'smile',
-                component: './System/UserList',
+                component: './Backend/System/UserList',
                 authority: ['admin'],
               },
             ],
@@ -49,8 +62,8 @@ export const routesConfig = [
           {
             name: 'list.table-list',
             icon: 'table',
-            path: '/list',
-            component: './ListTableList',
+            path: '/backend/list',
+            component: './Backend/ListTableList',
           },
           {
             component: './404',

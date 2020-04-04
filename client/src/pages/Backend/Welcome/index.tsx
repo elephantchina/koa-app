@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Card, Typography, Alert } from 'antd';
-import styles from './Welcome.less';
+import styles from './style.less';
 
 const CodePreview: React.FC<{}> = ({ children }) => (
   <pre className={styles.pre}>
@@ -10,8 +10,7 @@ const CodePreview: React.FC<{}> = ({ children }) => (
     </code>
   </pre>
 );
-
-export default (): React.ReactNode => (
+const Welcome = (): React.ReactNode => (
   <PageHeaderWrapper>
     <Card>
       <Alert
@@ -60,3 +59,5 @@ export default (): React.ReactNode => (
     </p>
   </PageHeaderWrapper>
 );
+
+export default Welcome;
