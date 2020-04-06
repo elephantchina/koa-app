@@ -4,8 +4,7 @@ import React, { useState, useRef } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { SorterResult } from 'antd/es/table/interface';
-import { useQuery } from 'react-apollo-hooks';
-import { UserListDocument } from '../../../../graphql/components';
+import { useApolloClient } from 'react-apollo-hooks';
 
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
@@ -75,11 +74,12 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
 };
 
 const TableList: React.FC<{}> = () => {
-  const { data } = useQuery(UserListDocument, {
-    fetchPolicy: 'no-cache',
-  });
+  // const { data } = useQuery(UserListDocument, {
+  //   fetchPolicy: 'no-cache',
+  // });
 
-  console.log(data);
+  // console.log(data);
+  const client = useApolloClient();
 
   const [sorter, setSorter] = useState<string>('');
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
@@ -88,8 +88,8 @@ const TableList: React.FC<{}> = () => {
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '规则名称',
-      dataIndex: 'name',
+      title: '用户ID',
+      dataIndex: '_id',
       rules: [
         {
           required: true,
@@ -98,31 +98,23 @@ const TableList: React.FC<{}> = () => {
       ],
     },
     {
-      title: '描述',
-      dataIndex: 'desc',
+      title: '用户头像',
+      dataIndex: 'avatar',
       valueType: 'textarea',
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
+      title: '用户名称',
+      dataIndex: 'name',
       hideInForm: true,
-      renderText: (val: string) => `${val} 万`,
     },
     {
-      title: '状态',
-      dataIndex: 'status',
+      title: '用户邮箱',
+      dataIndex: 'email',
       hideInForm: true,
-      valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
-      },
     },
     {
-      title: '上次调度时间',
-      dataIndex: 'updatedAt',
+      title: '注册时间',
+      dataIndex: 'date',
       sorter: true,
       valueType: 'dateTime',
       hideInForm: true,
@@ -139,10 +131,10 @@ const TableList: React.FC<{}> = () => {
               setStepFormValues(record);
             }}
           >
-            配置
+            删除
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
+          <a href="">修改密码</a>
         </>
       ),
     },
@@ -193,12 +185,10 @@ const TableList: React.FC<{}> = () => {
         tableAlertRender={(selectedRowKeys, selectedRows) => (
           <div>
             已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
-            <span>
-              服务调用次数总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万
-            </span>
+            <span>用户总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 个</span>
           </div>
         )}
-        request={params => queryRule(params)}
+        request={params => queryRule(client, params)}
         columns={columns}
         rowSelection={{}}
       />

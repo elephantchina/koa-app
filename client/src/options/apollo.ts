@@ -3,6 +3,8 @@ import { onError } from 'apollo-link-error';
 // import { getAuthToken, signOut } from '@/utils/auth';
 import router from 'umi/router';
 import { message as Msg } from 'antd';
+import { getPageQuery } from '@/utils/utils';
+import { stringify } from 'querystring';
 
 const authLink = setContext(async (_, { headers }) => {
   const token = localStorage.getItem('ELE_TOKEN');
@@ -17,6 +19,20 @@ const authLink = setContext(async (_, { headers }) => {
   };
 });
 
+const logout = () => {
+  const { redirect } = getPageQuery();
+  localStorage.clear();
+  // Note: There may be security issues, please note
+  if (window.location.pathname !== '/user/login' && !redirect) {
+    router.replace({
+      pathname: '/user/login',
+      search: stringify({
+        redirect: window.location.href,
+      }),
+    });
+  }
+};
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.map(({ extensions, message, locations, path }) => {
@@ -30,9 +46,9 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         `[GraphQL error]: Status: ${status}, Message: ${message}, Location: ${locations}, Path: ${path}`,
       );
       switch (status) {
-        case 403:
+        case 401:
           Msg.error('登录失效，请重新登录');
-          // signOut();
+          logout();
           router.push('/');
           break;
         case 500:
